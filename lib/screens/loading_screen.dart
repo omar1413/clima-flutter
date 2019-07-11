@@ -11,12 +11,12 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   void getLocationData() async {
     Weather weather = Weather();
-    Map<String, dynamic> data = await weather.fetchWeatherData();
-
+    print('before');
+    weather = await weather.fetchWeatherData();
+    print('after');
     Navigator.push(context, MaterialPageRoute(builder: (c) {
       return LocationScreen(
-        city: data['city'],
-        temp: int.parse(data['temp']),
+        weather: weather,
       );
     }));
   }
